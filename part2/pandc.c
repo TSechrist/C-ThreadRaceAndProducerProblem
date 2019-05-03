@@ -7,6 +7,8 @@
 #include <time.h>
 #include <semaphore.h>
 
+pthread_mutex_t lock;
+_Atomic int global = 0;
 
 /* 
  * Function to remove item.
@@ -31,11 +33,29 @@ int enqueue_item(int item)
    
 }
 
+void* thread_func_producer( void* arg ){
+
+    pthread_mutex_lock(&lock);
+
+    pthread_mutex_unlock(&lock);
+
+    return NULL;
+}
+
+void* thread_func_consumer( void* arg ){
+
+    pthread_mutex_lock(&lock);
+
+    pthread_mutex_unlock(&lock);
+
+    return NULL;
+}
+
 int main(int argc, char** argv) {
 
     if(argc != 7)
     {
-        perror("Not enough arguments given.");
+        perror("Not correct number of arguments given (7)");
         exit( EXIT_FAILURE );
     }
 
@@ -52,6 +72,17 @@ int main(int argc, char** argv) {
     printf("Number of Consumers :                           %d\n", c);
     printf("Number of Items Produced by each Producer :     %d\n", x);
     printf("Number of Items Consumed by each Consumer :     %d\n", y);
+
+    if((p * x) - (c * y) > 0)
+    {
+        printf("Over Consume on? :                              1\n");
+        printf("Over Consume amount :                           %d\n", (p * x) - (c * y));
+    }
+    else
+    {
+        printf("Over Consume on? :                               0\n");
+    }
+
     printf("Time each Producer Sleeps (seconds) :           %d\n", ptime);
     printf("Time each Consumer Sleeps (seconds) :           %d\n", ctime);
 
