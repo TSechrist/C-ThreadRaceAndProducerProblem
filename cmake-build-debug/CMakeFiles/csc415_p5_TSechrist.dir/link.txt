@@ -1,0 +1,1 @@
+/usr/bin/cc -g   CMakeFiles/csc415_p5_TSechrist.dir/part1/pthread_race.c.o CMakeFiles/csc415_p5_TSechrist.dir/part2/pandc.c.o  -o csc415_p5_TSechrist 

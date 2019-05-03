@@ -1,0 +1,40 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/steph/csc415/csc415-p5-TSechrist/part1/pthread_race.c
+stdio.h
+-
+stdlib.h
+-
+pthread.h
+-
+unistd.h
+-
+time.h
+-
+sys/time.h
+-
+
+/home/steph/csc415/csc415-p5-TSechrist/part2/pandc.c
+stdio.h
+-
+string.h
+-
+pthread.h
+-
+ctype.h
+-
+stdlib.h
+-
+unistd.h
+-
+time.h
+-
+semaphore.h
+-
+
