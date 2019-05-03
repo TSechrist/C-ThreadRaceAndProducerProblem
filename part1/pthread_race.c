@@ -6,6 +6,7 @@
 #include <sys/time.h>
 
 static int shared = 0;
+pthread_mutex_t lock;
 
 /**
  * THESE DEFINE VALUES CANNOT BE CHANGED.
@@ -27,6 +28,9 @@ struct timespec ts = {0, 123456 };
 
 void* thread_func_add( void* arg ){
 //    int idx = *((int *)arg);
+
+    pthread_mutex_lock(&lock);
+
     int num = shared;
 
     for(int i = 0; i < MAX_ITERATIONS; i++)
@@ -37,11 +41,17 @@ void* thread_func_add( void* arg ){
         shared = num;
         printf("Current Value written to Global Variables by ADDER thread id: %u is %d\n", (unsigned int)pthread_self(), num);
     }
+
+    pthread_mutex_unlock(&lock);
+
     return NULL;
 }
 
 void* thread_func_sub( void* arg ){
 //    int idx = *((int *)arg);
+
+    pthread_mutex_lock(&lock);
+
     int num = shared;
 
     for(int i = 0; i < MAX_ITERATIONS; i++)
@@ -53,6 +63,9 @@ void* thread_func_sub( void* arg ){
         printf("Current Value written to Global Variables by SUBTRACTOR thread id: %u is %d\n", (unsigned int)pthread_self(), num);
 
     }
+
+    pthread_mutex_unlock(&lock);
+
     return NULL;
 }
 
@@ -84,6 +97,7 @@ main(int argc, char** argv)
         pthread_join(ids[i],NULL);
     }
 
+    pthread_mutex_destroy(&lock);
 
     printf("shared: %d\n", shared);
 
