@@ -1,11 +1,13 @@
-# CSC 415 - Project 5 - Producer Consumer - Part 2
+# CSC 415 - Project 5 - Thread Racer and Producer Consumer 
 
 ## Student Name : Thomas Sechrist
-
-## Student ID : 918679091
 
 ## Build Instructions
 ### Run with make command.
 
 ## Run Instructions
+### Run file with ./threadracer to run the racer program.
 ### Run file with ./pandc and give 6 arguments to be the parameters for the program.
+
+### These programs will create threads to race eachother while adding and subtracting a global variable. I use mutex locks to control the access to the variable. 
+
